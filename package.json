@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-file-manager",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dzsilkov/nodejs-file-manager.git"
+  },
+  "keywords": [
+    "nodejs",
+    "file-manager"
+  ],
+  "author": "dzsilkov",
+  "license": "ISC"
+}

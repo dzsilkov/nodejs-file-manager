@@ -51,7 +51,7 @@ const executeCommand = async (command) => {
     try {
         await command();
     } catch (e) {
-        if (e.code) {
+        if (e.code || e.name === 'OperationFailedError') {
             throw new OperationFailedError();
         } else {
             throw new InvalidInputError();

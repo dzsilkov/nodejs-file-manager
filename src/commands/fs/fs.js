@@ -3,6 +3,7 @@ import { cwd } from 'node:process';
 import fs from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
 import { finished } from 'node:stream/promises';
+import { OperationFailedError } from '../../error/index.js';
 
 const onAddCommand = async ([ fileName, content = '' ]) => {
     const filePath = resolve(cwd(), fileName);
@@ -10,8 +11,13 @@ const onAddCommand = async ([ fileName, content = '' ]) => {
 };
 
 const onRenameCommand = async ([ pathToFile, newFileName ]) => {
-    const filePath = resolve(cwd(), pathToFile);
-    await fs.rename(filePath, newFileName);
+    const isTargetExist = !!(await fs.stat(newFileName).catch(() => false));
+    if (isTargetExist) {
+        throw new OperationFailedError();
+    } else {
+        const filePath = resolve(cwd(), pathToFile);
+        await fs.rename(filePath, resolve(newFileName));
+    }
 };
 
 const onRemoveCommand = async ([ pathToFile ]) => await fs.rm(resolve(pathToFile));

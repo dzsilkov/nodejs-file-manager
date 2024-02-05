@@ -43,7 +43,7 @@ const fileManagerStart = () => {
             sayByeCommand(getUserName());
         });
     } catch (e) {
-        // console.log(e);
+        console.log(e);
     }
 };
 

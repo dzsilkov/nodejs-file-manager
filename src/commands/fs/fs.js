@@ -20,7 +20,7 @@ const onRenameCommand = async ([ pathToFile, newFileName ]) => {
     }
 };
 
-const onRemoveCommand = async ([ pathToFile ]) => await fs.rm(resolve(pathToFile));
+const onRemoveCommand = async ([ pathToFile ]) => await fs.rm(resolve(pathToFile), { recursive: true });
 
 const copyDir = async (srcPath, destPath) => {
     const srcFiles = await fs.readdir(srcPath, { withFileTypes: true });
